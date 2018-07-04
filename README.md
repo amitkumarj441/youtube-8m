@@ -45,10 +45,10 @@ your own custom-defined models.
 
 The starter code requires Tensorflow. If you haven't installed it yet, follow
 the instructions on [tensorflow.org](https://www.tensorflow.org/install/).
-This code has been tested with Tensorflow 1.3.0. Going forward, we will continue
+This code has been tested with Tensorflow 1.8. Going forward, we will continue
 to target the latest released version of Tensorflow.
 
-Please verify that you have Python 2.7+ and Tensorflow 1.3.0 or higher
+Please verify that you have Python 2.7+ and Tensorflow 1.8 or higher
 installed by running the following commands:
 
 ```sh
@@ -91,10 +91,10 @@ Clone this git repo:
 ```
 mkdir -p ~/yt8m/code
 cd ~/yt8m/code
-git clone https://github.com/samihaija/youtube-8m.git
+git clone https://github.com/google/youtube-8m.git
 ```
 
-#### Train video-level model
+#### Training on Video-Level Features
 ```
 python train.py --feature_names='mean_rgb,mean_audio' --feature_sizes='1024,128' --train_data_pattern=${HOME}/yt8m/v2/video/train*.tfrecord --train_dir ~/yt8m/v2/models/video/sample_model --start_new_model
 ```
@@ -501,7 +501,7 @@ submit training $JOB_NAME \
 --package-path=youtube-8m --module-name=youtube-8m.train \
 --staging-bucket=$BUCKET_NAME --region=us-east1 \
 --config=youtube-8m/cloudml-gpu.yaml \
--- --train_data_pattern='gs://youtube8m-ml-us-east1/1/frame_level/train/train*.tfrecord' \
+-- --train_data_pattern='gs://youtube8m-ml-us-east1/2/frame/train/train*.tfrecord' \
 --frame_features=True --model=FrameLevelLogisticModel --feature_names="rgb" \
 --feature_sizes="1024" --batch_size=128 \
 --train_dir=$BUCKET_NAME/yt8m_train_frame_level_logistic_model
